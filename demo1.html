@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description"  content="">
+<meta name="keywords"  content="">
+<style>
+	#box{
+		border: 1px solid #555;
+		/*line-height: 1.6*/
+	}
+	span{
+		display: inline-block;
+		background-color: #ddd;
+		font-size: 50px;
+		margin-right: 35px;
+	}
+	#span1{
+		/*不设置高度*/
+	}
+	#span2{
+		height: 50px;
+	}
+	#span3{
+		line-height: 50px;
+	}
+</style>
+</head>
+<body>
+	<div id="box">
+		<!-- <img  id="img1"  src="img1.jpg" /> -->
+		<span class="span" id="span1">1.English</span>
+		<span class="span" id="span2">2.English</span>
+		<span class="span" id="span3">3.English</span>
+		<!-- <img  id="img2"  src="img2.jpg" /> -->
+	</div>
+	<div>
+		<p>
+			<pre>span1.clientHeight = 57</pre>
+			<pre>span2.clientHeight = 50</pre>
+			<pre>span3.clientHeight = 50</pre>
+		</p>
+		<pre>明显看到三者的背景颜色的范围不同。下面进行解释。</pre>
+		<p>
+			首先，font-size 是文字顶线到文字底线之间的距离。line-height 是两行基线之间的距离。那么line-height - font-size = 行距。<br/>
+			当line-height = font-size时，行距等于0，也就是说第一行的底线和第二行的顶线重合。（但不能说两行文字之间没有空隙，因为文字字符大多不会跨越整个font-size的高度）
+		</p>
+		<p>
+			1.不设置。此时 span 标签的显示高度由内部的文字撑开。内部的文字有 font-size = 50。而 line-height 的值和 font-size 有关系。
+			chrome 浏览器默认的 line-height = 1.14。也就是说任何一个具体的 inline 或者 inline-block 元素如果没有设置 line-height，那么它的 line-height = font-size * 1.14 = 57。所以 span1 的 line-height = 57。 span1 就被这个 line-height 撑开了，高度是57。
+			<br/>
+			当line-height 改变时，文字的位置不会变化，撑开的高度被平均分配到文字的上下，也就是半行距。
+		</p>
+		<p>
+			2.设置了height，但没有设置 line-height 时， span 标签撑开的距离就不由计算得到的 line-height 决定了，而是由声明设置的 height决定。当然，各个设置为 inline-block 的 span 标签的文字还是对齐的。此时，背景部分顶部对齐向下延展。
+		</p>
+		<p>
+			3.设置了line-height。此时 span 标签撑开的高度就是由这个设置的 line-height 决定的，略小于默认计算出来的line-height。
+		</p>
+	</div>
+	
+	
+</body>
+</html>
